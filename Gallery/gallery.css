@@ -1,0 +1,86 @@
+.largeImg {
+	border: solid 1px #ccc;
+	width: 900px;
+	height: 500px;
+	padding: 5px;
+	border-radius: 15px;
+}
+
+.thumbs .current img {
+	border-color: #FF9900;
+}
+
+.thumbs img {
+	border: solid 3px #ccc;
+	width: 140px;
+	height: 88px;
+	padding: 1px;
+	margin: 2px;
+	float: left;
+}
+
+.thumbs img:hover {
+	border-color: #FF9900;
+}
+
+.thumbs li {
+	list-style: none;
+}
+
+.thumbs {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+  padding: 10px
+}
+
+.carousel {
+  position: relative;
+  width: 760px;
+  padding: 10px 40px;
+  border: 1px solid #CCC;
+  border-radius: 15px;
+  background: #eee;
+}
+.carousel img {
+  width: 140px;
+  height: 88px;
+  display: block;
+}
+.carousel .arrow {
+  position: absolute;
+  top: 40px;
+  padding: 3px 8px 8px 9px;
+  background: #ddd;
+  border-radius: 15px;
+  font-size: 24px;
+  color: #444;
+  text-decoration: none;
+}
+
+.carousel .arrow:hover {
+  background: #ccc;
+}
+.carousel .left-arrow {
+  left: 7px;
+}
+.carousel .right-arrow {
+  right: 7px;
+}
+.gal {
+  width: 760px;
+  overflow: hidden;
+}
+.gal ul {
+  height: 88px;
+  width: 9999px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gal ul li {
+	float: left;
+}

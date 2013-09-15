@@ -128,7 +128,12 @@ function GalleryConstructor(selector){
   this.rotateTimer = null;
 
   this.show(0); // по-умолчанию показываем 1 картинку
-  bind(window, 'load', this.startAutoScrolling());
+
+  function startScroll () {
+    self.startAutoScrolling();
+  }
+  bind(window, 'load', startScroll);
+
 
   function keyDown(){
     if (event.keyCode === LEFT_ARROW){
@@ -210,12 +215,14 @@ bind(imgWrapper, 'click', clickImg); // событие клика на "прев
 
 
 function prevButton() {
+  event.preventDefault();
   position = Math.min(position + IMG_WIDTH * IMG_NUM, 0); // вычисление сдвига назад
   ul.style.marginLeft = position + 'px';
 }
 bind(prevBtn, 'click', prevButton); // событие клика на кнопку "назад"
 
 function nextButton() {
+  event.preventDefault();
   position = Math.max(position - IMG_WIDTH * IMG_NUM, -IMG_WIDTH * (previews.length - IMG_NUM));  // вычисление сдвига вперед
   ul.style.marginLeft = position + 'px';
 }

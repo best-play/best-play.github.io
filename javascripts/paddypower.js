@@ -7,6 +7,7 @@
 */
 $j(function() {
 	"use strict";
+	var SIZEOFBET = 55; // bet for calculation winning
 
 	// make custom styles
 	$j('<style type="text/css">'
@@ -66,9 +67,9 @@ $j(function() {
 				var betA = rows.eq(i).find('span.prc').eq(2).text();
 
 				// add text with a hint
-				rows.eq(i).find('.fbhlt').eq(1).append('<div class="_betInfo">gioca €20 vinci €' + parseInt((parseFloat(betH) * 20), 10) + '</div>');
-				rows.eq(i).find('.fbhlt').eq(1).append('<div class="_betInfo">gioca €20 vinci €' + parseInt((parseFloat(betD) * 20), 10) + '</div>');
-				rows.eq(i).find('.fbhlt').eq(1).append('<div class="_betInfo">gioca €20 vinci €' + parseInt((parseFloat(betA) * 20), 10) + '</div>');
+				rows.eq(i).find('.fbhlt').eq(1).append('<div class="_betInfo">gioca €'+ SIZEOFBET + ' vinci €' + parseInt((parseFloat(betH) * SIZEOFBET), 10) + '</div>');
+				rows.eq(i).find('.fbhlt').eq(1).append('<div class="_betInfo">gioca €'+ SIZEOFBET + ' vinci €' + parseInt((parseFloat(betD) * SIZEOFBET), 10) + '</div>');
+				rows.eq(i).find('.fbhlt').eq(1).append('<div class="_betInfo">gioca €'+ SIZEOFBET + ' vinci €' + parseInt((parseFloat(betA) * SIZEOFBET), 10) + '</div>');
 
 				// remove unusable column
 				rows.eq(i).find('.fbhlt').eq(2).remove();

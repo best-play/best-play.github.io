@@ -1,0 +1,87 @@
+<html>    
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script language="javascript" type="text/javascript">
+        
+        
+        String.prototype.trim = function() { return this.replace(/^\s+|\s+$/g, ''); };
+
+        function WriteForm(e)
+        {
+            try
+            {
+                var base=document.getElementById("baseUrl").value;   
+                
+                e=document.getElementById("ExampleOutput");
+
+                l=e.value.split("\n");
+                s='<?xml version="1.0"?>\n';    
+                s+='<webtvs>\n';
+                name='';
+                for (var i=0;i<l.length;i++)
+                    {
+                        v=l[i].trim();if (v=='') continue;
+                        if (v.indexOf("#")!==-1)
+                            {
+                                if (v.toUpperCase().indexOf("#EXTINF")!=-1)
+                                    {
+                                        ci=v.indexOf(',');
+                                        if (ci!==-1) name=v.substr(ci+1);
+                                    }
+                            }
+                        else
+                            {
+                                 if (v.trim().toUpperCase().indexOf('UDP:')!=-1) 
+                                     {                                         
+                                         url=base+v.replace('udp://@', "udp/","i");
+                                     }
+                                 else url=v;    
+                                 if (name=='') name='Канал '+i;
+                                 s+='<webtv title="'+name+'" urlkey="0" url="'+url+'" description="'+name+'" type="1" group="1" iconsrc=""/>'+'\n' ;                       
+                                 name='';
+                            }
+                    }
+                
+                s+='</webtvs>\n';
+                
+                e.value=s;
+
+
+            }
+            catch(Err)
+            {
+                alert("Error: " + Err.description);               
+            }
+            return false;
+        }
+        
+        
+        function OpenForm(e)
+        {
+            var e=document.getElementById("ExampleOutput");            
+            window.open('data:text/xml;charset=utf-8,' + encodeURIComponent(e.value),'webtv_usr.xml');
+        }
+        function OpenFormData(e)
+        {
+            var e=document.getElementById("ExampleOutput");                        
+            window.open('data:application/octet-stream,' + encodeURIComponent(e.value),'webtv_usr.xml');
+        }
+        
+        
+    </script>
+</head>
+<body>   
+
+    <br /> Адрес udpxy <input id="baseUrl" value="http://localhost:81/">
+    <br />
+   <a href="#" onclick="WriteForm();">Генерировать.</a><br />
+   <a href="#" onclick="OpenForm();">Открыть.</a><br />
+   <a href="#" onclick="OpenFormData();">Скачать.</a><br />
+    Вставте  M3U
+    <br />
+    <form>
+        <textarea id="ExampleOutput" style="width:100%" rows="40"></textarea>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,56 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <?= $this->headMeta(); ?>
+  <?= $this->headTitle(); ?>
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="/css/bootstrap-custom.css" rel="stylesheet">
+    <?= $this->jQuery(); ?>
+    <script src="/js/bootstrap-dropdown.js"></script>
+</head>
+<body>
+<?php
+$auth = Zend_Auth::getInstance();
+if($auth->hasIdentity()): ?>
+    <?php echo $this->partial('_partials/user_block.phtml')?>
+<?php endif; ?>
+    <div class="container">
+      <div class="row">
+        <div class="span3">
+            <?php
+            $navmenu = NULL;
+            $options = array(
+                    'ulClass' => 'nav nav-list'
+            );
+                     if($auth->hasIdentity()) {
+            ?>
+            <div class="well sidebar-nav">
+            <?php
+                        echo $this->navigation()
+                                ->setAcl(Service_Acl::getInstance())
+                                ->setRole(strtolower($auth->getIdentity()->role))
+                                ->menu()
+                                ->renderMenu($navmenu, $options);
+                      ?>
+
+          </div><!--/.well --><?php } ?>
+        </div><!--/span-->
+       <?php
+            if($auth->hasIdentity()) {
+       ?>
+       <div class="span9">
+          <div class="row">
+            <div class="span9">
+                <?= $this->layout()->content ?>
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+      <?php } else {?>
+      <?= $this->layout()->content ?>
+      <?php }?>
+
+    </div>
+</body>
+</html>

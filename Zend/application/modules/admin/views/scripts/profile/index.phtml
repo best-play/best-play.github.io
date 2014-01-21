@@ -1,0 +1,6 @@
+<h2>Ваш профиль</h2>
+<div>Здравствуйте, <b><?php echo $this->user->first_name . ' ' . $this->user->last_name; ?></b>!</div>
+<div>Ваш статус на сайте: <b><?php echo $this->user->getRoleName(); ?></b></div>
+<div>Ваш почтовый ящик: <b><?php echo $this->user->email; ?></b></div>
+<div>Ваш номер телефона: <b><?php echo $this->user->phone; ?></b></div>
+<div>Вы были зарегестрированы: <b><?php echo $this->user->created; ?></b></div>

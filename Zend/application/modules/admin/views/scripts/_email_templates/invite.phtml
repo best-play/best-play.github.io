@@ -1,0 +1,32 @@
+<?php $siteLink = isset($_SERVER['HTTPS']) ? 'https://' : 'http://' . $_SERVER['HTTP_HOST']; ?>
+<p>
+    <span style="font-style: italic;">Вас приветствует компания
+        <strong><?php echo COMPANY_NAME; ?></strong>
+    </span>
+</p>
+<p>
+    Пользователь
+    <span style="font-style: italic; font-weight: bold;">
+        <?php echo $this->user->first_name . ' ' . $this->user->last_name; ?>
+    </span>
+    пригласил<?php echo $this->user->gender == Model_Entity_User::GENDER_FEMALE ? 'а' : ''; ?>
+    Вас зарегистрироваться на сайте
+    <a href="<?php echo $siteLink; ?>"><?php echo $siteLink; ?></a>
+</p>
+<p>
+    Чтобы зарегистрироваться, перейдите по ссылке
+<div style="margin-left: 40px;">
+    <a style="color: #39AE4A"
+       href="<?php echo $siteLink; ?>/admin/index/registration?code=<?php echo $this->invite->code; ?>">
+        <?php echo $siteLink; ?>/admin/index/registration?code=<?php echo $this->invite->code; ?>
+    </a>
+</div>
+</p>
+<p>Данным приглашеним можно воспользоваться до
+    <strong><?php echo $this->invite->getExpiredDate()->format('H:i d-m-Y'); ?></strong>
+</p>
+<p>
+    <span style="font-style: italic;">С уважением, администрация 
+        <strong><?php echo COMPANY_NAME; ?></strong>
+    </span>
+</p>

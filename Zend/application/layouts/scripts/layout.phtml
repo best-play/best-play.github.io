@@ -1,0 +1,46 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <?= $this->headMeta(); ?>
+  <?= $this->headTitle(); ?>
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+</head>
+<body>
+
+
+
+
+
+<?php
+$auth = Zend_Auth::getInstance();
+if($auth->hasIdentity()): ?>
+    <?= $this->partial('_partials/user_block.phtml', 'admin')?>
+<?php endif; ?>
+
+
+
+
+
+  <div class="container">
+      <?= $this->layout()->content ?>
+ </div>
+
+
+
+
+    <div id="footer">
+    </div>
+
+    <?= $this->jQuery(); ?>
+    <script src="/js/bootstrap-dropdown.js"></script>
+
+
+</body>
+</html>

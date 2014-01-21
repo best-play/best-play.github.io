@@ -1,0 +1,5 @@
+<div class="alert alert-info">Пользователю будет отправлено письмо с кодом, используя который он может зарегистрироваться на сайте</div>
+<?php if (isset($this->message)): ?>
+<div class="message"><?php echo $this->message; ?></div>
+<?php endif; ?>
+<?php echo $this->form; ?>

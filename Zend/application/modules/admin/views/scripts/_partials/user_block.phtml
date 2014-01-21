@@ -1,0 +1,25 @@
+<?php
+$auth = Zend_Auth::getInstance();
+$authData = $auth->getIdentity();
+$mapper = new Model_Mapper_User();
+$user = $mapper->fetch($authData->user_id);
+?>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="muted" style="display: block; padding-top: 10px;">Добро пожаловать, <?php echo $user->first_name . ' ' . $user->last_name; ?></li>
+              <li class="divider-vertical"></li>
+              <li class="text-info" style="display: block; padding-top: 10px;"> <?php echo $user->email; ?></li>
+              <li class="divider-vertical"></li>
+              <li class="muted span3" style="display: block; padding-top: 10px;"><?php echo $user->getRoleName(); ?></li>
+              <li class="divider-vertical"></li>
+              <li><a href="/">На главную</a></li>
+              <li><a href="/admin/main">Админка</a></li>
+              <li><?php if (isset($authData->ghost_id)): ?><a href="/admin/index/ghost-logout">Вернуться к своему логину</a><?php else: ?><a href="/admin/index/logout">Выйти</a><?php endif; ?></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>

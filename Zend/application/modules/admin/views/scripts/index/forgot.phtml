@@ -1,0 +1,7 @@
+﻿<?php if (isset($this->error)): ?>
+<div class="errors"><?php echo $this->error; ?></div>
+<?php endif; ?>
+<?php if (isset($this->message)): ?>
+<div class="message"><?php echo $this->message; ?></div>
+<?php endif; ?>
+<?php echo $this->form; ?>

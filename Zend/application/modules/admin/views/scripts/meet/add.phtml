@@ -1,0 +1,92 @@
+﻿<h2>Добавление встречи</h2>
+<?php if (isset($this->message)): ?>
+<div class="message"><?php echo $this->message; ?></div>
+<?php endif; ?>
+<?php echo $this->form; ?>
+
+<script>
+function initClientForm()
+{
+// init popup dialog
+    var $link = $('#clientformopen')
+
+    $link.click(function() {
+        var $dialog = $('<div id="clform"></div>')
+                .dialog({
+                    autoOpen: false,
+                    width: 350,
+                    height: 600,
+                    draggable: true,
+                    resizable: false,
+                    modal: true,
+                    show: { effect: "drop", direction: "left"},
+                    hide: { effect: "drop", direction: "right"},
+                    closeOnEscape: true,
+                    close: function(event, ui) {
+                        $(this).dialog('destroy').remove()
+                    }
+                })
+        $dialog.load('/admin/client/add', '', function(){
+
+            $('#clientform').submit(function(event) {
+                event.preventDefault();
+
+                var data = {}
+                data = grabData($('#clientform input'), data)
+
+                    $.post('/admin/client/add', data, function(resp){
+                      console.log(data.last_name);
+                        if (typeof resp === 'string') {
+                            alert('Клиент добавлен')
+                            $dialog.dialog('close')
+                            $('#pickClient')
+                                 .append($("<option></option>")
+                                 .attr("value",resp)
+                                 .text(data.last_name + ' ' + data.first_name + ' ' + data.middle_name))
+                                 .val(resp);
+                        } else {
+                            showErrors(resp)
+                        }
+                    })
+            })
+        })
+        $dialog.dialog('open')
+        return false;
+    })
+}
+$(function(){
+    initClientForm()
+})
+function grabData(id, data)
+{
+    $(id).each(function(){
+        data[$(this).attr('name')] = $(this).val();
+    });
+
+    return data
+}
+
+function showErrors(resp)
+{
+    for (var i in resp) {
+        var error = this.getErrorStr(resp[i])
+        $('#' + i).after(error)
+    }
+}
+
+function getErrorStr(obj)
+{
+    var error = '<ul>'
+    for (var i in obj) {
+        error += '<li>' + obj[i] + '</li>'
+    }
+    error += '</ul>'
+
+    return error
+}
+</script>
+
+
+<div class="callbackform">
+    <button id="clientformopen" class="btn btn-info">Добавить клиента</button>
+</div>

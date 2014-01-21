@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+    <production>
+        <main>
+            <label>Главная</label>
+            <module>admin</module>
+            <controller>main</controller>
+            <action>index</action>
+            <resource>admin</resource>
+            <privilege>main</privilege>
+        </main>
+        <profile>
+            <label>Профиль</label>
+            <module>admin</module>
+            <controller>profile</controller>
+            <action>index</action>
+            <resource>admin</resource>
+            <privilege>profile</privilege>
+            <pages>
+                <edit>
+                    <label>Редактировать мои данные</label>
+                    <module>admin</module>
+                    <controller>profile</controller>
+                    <action>edit</action>
+                    <resource>admin</resource>
+                    <privilege>profile</privilege>
+                </edit>
+                <changepassword>
+                    <label>Изменить пароль</label>
+                    <uri>/admin/profile/changepassword</uri>
+                    <module>admin</module>
+                    <controller>profile</controller>
+                    <action>changepassword</action>
+                    <resource>admin</resource>
+                    <privilege>profile</privilege>
+                </changepassword>
+            </pages>
+        </profile>
+        <client>
+            <label>Клиенты</label>
+            <module>admin</module>
+            <controller>client</controller>
+            <action>index</action>
+            <resource>admin</resource>
+            <privilege>client</privilege>
+            <pages>
+                <add>
+                    <label>Зарегистрировать клиента</label>
+                    <module>admin</module>
+                    <controller>client</controller>
+                    <action>add</action>
+                    <resource>admin</resource>
+                    <privilege>client</privilege>
+                </add>
+		<meet>
+                    <label>Добавить встречу</label>
+                    <module>admin</module>
+                    <controller>meet</controller>
+                    <action>add</action>
+                    <resource>admin</resource>
+                    <privilege>meet</privilege>
+                </meet>
+            </pages>
+        </client>
+        <user>
+            <label>Пользователи</label>
+            <module>admin</module>
+            <controller>user</controller>
+            <action>index</action>
+            <resource>admin</resource>
+            <privilege>user</privilege>
+            <pages>
+                <invite>
+                    <label>Пригласить пользователя</label>
+                    <module>admin</module>
+                    <controller>user</controller>
+                    <action>invite</action>
+                    <resource>admin</resource>
+                    <privilege>user</privilege>
+                </invite>
+            </pages>
+        </user>
+    </production>
+</configdata>

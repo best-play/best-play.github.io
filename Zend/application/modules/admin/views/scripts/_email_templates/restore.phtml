@@ -1,0 +1,29 @@
+<?php $siteLink = isset($_SERVER['HTTPS']) ? 'https://' : 'http://' . $_SERVER['HTTP_HOST']; ?>
+<p>
+    <span style="font-style: italic;">
+        Здравствуйте, <?php echo $this->user->first_name . ' ' . $this->user->last_name; ?>.
+        Вас приветствует компания <strong><?php echo COMPANY_NAME; ?></strong>
+    </span>
+</p>
+<p>
+    Вы (или кто-то другой) запросили восстановление пароля для Вашего email-адреса
+    (<?php echo $this->restore->created; ?>).
+    Чтобы восстановить пароль перейдите по ссылке:
+</p>
+<p>
+<div style="margin-left: 40px;">
+    <a style="color: #39AE4A"
+       href="<?php echo $siteLink; ?>/admin/index/restore?code=<?php echo $this->restore->code; ?>">
+        <?php echo $siteLink; ?>/admin/index/restore?code=<?php echo $this->restore->code; ?>
+    </a>
+</div>
+</p>
+<p>Ссылкой можно воспользоваться до
+    <strong><?php echo $this->restore->getExpiredDate()->format('H:i d-m-Y'); ?></strong>
+</p>
+<p>
+    <span style="font-style: italic;">С уважением, администрация
+        <strong><?php echo COMPANY_NAME; ?></strong>
+    </span>
+</p>
+

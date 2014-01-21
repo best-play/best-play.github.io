@@ -1,0 +1,29 @@
+<?php
+if(empty($this->meets)){
+  echo "<center><h2>Для данного клиента записей встреч нет</h2></center>";
+} else {
+?>
+
+<h5>Встречи клиента: <?php echo $this->client->getFullName(); ?>
+
+</h5>
+<table class="table table-striped table-bordered table-condensed">
+    <thead>
+        <th><center>Дата встречи</center></th>
+        <th><center>Комментарий</center></th>
+        <th></th>
+    </thead>
+    <tbody>
+<?php foreach ($this->meets as $meet) { ?>
+    <tr>
+        <td><?php echo $meet["date"]; ?></td>
+        <td><?php echo $meet["comment"]; ?></td>
+	<td style="width: 60px;"><center>
+            <a class="edit-icon" href="/admin/meet/edit?meet_id=<?php echo $meet["meet_id"]; ?>" title="редактировать встречу"></a>
+            <a class="delete-icon user-delete-confirm" href="/admin/meet/del?delete=<?php echo $meet["meet_id"]; ?>" title="удалить встречу"></a>
+        </center></td>
+    </tr>
+<?php } ?>
+    </tbody>
+</table>
+<?php } ?>

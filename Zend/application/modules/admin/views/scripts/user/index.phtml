@@ -1,0 +1,43 @@
+<div class="alert alert-info">
+<i><b>Курсивом</b></i> выделены администраторы <br />
+<span class='disabled-row'><b>Перечёркнутым</b></span> заблокированные пользователи
+</div>
+
+<table class="table table-striped table-bordered table-condensed">
+    <thead>
+        <th><center>Имя Фамилия</center></th>
+        <th><center>Телефон</center></th>
+        <th><center>Email</center></th>
+        <th><center>Создан</center></th>
+        <th></th>
+    </thead>
+    <tbody>
+<?php foreach($this->users as $k => $user): ?>
+        <?php $disabled = ($user->status == Model_Entity_User::STATUS_DISABLED) ? 'disabled-row' : ''?>
+        <?php $isAdmin = $user->isAdmin() ? 'row-is-admin' : '' ?>
+    <tr class="<?php echo $k % 2  ? 'even' : 'odd'; echo  ' ' . $disabled . ' ' . $isAdmin;?>">
+        <td><?php echo $user->getFullName(); ?></td>
+        <td valign="center"><?php echo $user->phone; ?></td>
+        <td><?php echo $user->email; ?></td>
+        <td><?php echo $user->created; ?></td>
+        <td style="width: 60px;"><center>
+            <a class="ban-user" href="?ban=<?php echo $user->user_id; ?>" title="<?php echo ($disabled) ? 'разблокировать' : 'заблокировать'; ?>"></a>
+            <a class="edit-icon" href="/admin/user/edituser?user_id=<?php echo $user->user_id; ?>" title="редактировать"></a>
+            <a class="delete-icon user-delete-confirm" href="?delete=<?php echo $user->user_id; ?>" title="удалить"></a>
+            <a class="ghost-icon" href="/admin/index/ghost-login?user_id=<?php echo $user->user_id; ?>" title="Войти как этот пользователь"></a>
+        </center></td>
+    </tr>
+<?php endforeach; ?>
+    </tbody>
+</table>
+
+<script>
+$(document).ready(function() {
+    $('.user-delete-confirm').live('click', function() {
+        var first = $(this).parent().parent().children('.first-name').text()
+        var second = $(this).parent().parent().children('.last-name').text()
+        user = first + ' ' + second
+        return confirm('Пользователь ' + user.toUpperCase() + ' будет удалён. Продолжить?')
+    })
+})
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Универсальный конвертер плейлистов (special for Fregat)</title>
+		<link rel="stylesheet" type="text/css" href="config/style.css" />
+		
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="logo">Универсальный конвертер плейлистов</div>
+			</div>
+			<div class="body">
+				<form name="pl_form">
+				<table style="width: 100%; border-collapse: collapse;" border="0">
+					<tbody>
+						<tr>
+							<td align="center">
+								<div class="radioBtn"><input type="radio" id="check1" name="playlistType" checked="checked" /><label for="check1">SmartIPTV (LG)</label></div>
+								<div class="radioBtn"><input type="radio" id="check2" name="playlistType" /><label for="check2">MPC-HC</label></div>
+								<div class="radioBtn"><input type="radio" id="check3" name="playlistType" /><label for="check3">*.xspf</label></div>
+								<div class="radioBtn"><input type="radio" id="check4" name="playlistType" /><label for="check4">Spark OS (webtv_usr.xml)</label></div>
+								
+								<div align="center"><br />
+									<input type="button" name="convert" value="Конвертировать" onClick="generatePlaylist()" />
+									<input type="reset" value="Очистить"/>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td style="width: 350px;"><br /><br />
+								<span>Ваш плейлист:</span> 
+								<textarea id="input" style="width:100%" rows="10"></textarea>
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="width: 350px;"><br />
+								<span>Готовый плейлист:</span> 
+								<textarea id="output" name="output" style="width:100%" rows="20"></textarea>
+								<input name="clr" type="button" onClick="selecText()" value="Выделить готовый плейлист" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				</form>
+			</div>
+		</div>
+		<script type="text/javascript" src="config/pl_generator-min.js"></script>
+	</body>
+</html>
